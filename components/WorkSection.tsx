@@ -7,11 +7,13 @@ import Arrow from "./Arrow"
 
 const workex = [
   {
-    name: "UIUC - Course Assistant - CS222",
+    name: "UIUC - Graduate Research Assistant - Geotechnical Machine Learning",
     description: 
-    "- Assisted a professor in grading assignments, focusing on accurate evaluation and constructive feedback. \n"
-    +
-    "- Mentored students in project development, offering technical guidance and encouraging creative problem-solving.",
+    "- Enhanced CO2 plume direction prediction and seismic fault analysis by 30%, collaborating with Prof. Roman Makhnenko, using data with over 10,000 geological entries. \n"+
+    "- Improved earthquake detection accuracy by 25% through deep neural networks, analyzing 5,000+ seismic wave-forms from lab published data. \n",
+    name2:"UIUC - Graduate Course Assistant - CS222",
+    desc2:"- Assisted a professor in grading assignments, focusing on accurate evaluation and constructive feedback. \n"
+    +"- Mentored students in project development, offering technical guidance and encouraging creative problem-solving.",
     image: "/uiuc.jpeg",
     github: "https://www.linkedin.com/in/ansh-ankul/",
     link: "https://www.linkedin.com/in/ansh-ankul/",
@@ -79,7 +81,15 @@ const WorkSection = () => {
                       </React.Fragment>
                      ))}
                     </p>
-                    
+                    <h1 className="text-2xl font-bold mb-6">{project.name2&& project.name2}</h1>
+                    <p className="text--1xl leading-7 mb-4 text-neutral-600 dark:text-neutral-400">
+                    {project.desc2 && project.desc2.split('\n').map((line, index) => (
+                      <React.Fragment key={index}>
+                        {line}
+                        <br />
+                      </React.Fragment>
+                     ))}
+                    </p>
                   </div>
                 </div>
               </SlideUp>
