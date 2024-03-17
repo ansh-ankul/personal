@@ -9,7 +9,7 @@ const workex = [
   {
     name: "UIUC - Graduate Research Assistant - Geotechnical Machine Learning",
     description: 
-    "- Enhanced CO2 plume direction prediction and seismic fault analysis by 30%, collaborating with Prof. Roman Makhnenko, using data with over 10,000 geological entries. \n"+
+    "- Enhanced CO2 plume direction prediction and seismic fault analysis by 30%, using data with over 10,000 geological entries. \n"+
     "- Improved earthquake detection accuracy by 25% through deep neural networks, analyzing 5,000+ seismic wave-forms from lab published data. \n",
     name2:"UIUC - Graduate Course Assistant - CS222",
     desc2:"- Assisted a professor in grading assignments, focusing on accurate evaluation and constructive feedback. \n"

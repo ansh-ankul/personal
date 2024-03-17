@@ -2,23 +2,28 @@ import React from "react"
 import Image from "next/image"
 
 const skills = [
-  { skill: "Python" },
-  { skill: "R" },
-  { skill: "JavaScript" },
-  { skill: "C++/C" },
-  { skill: "Sklearn" },
-  { skill: "Numpy" },
-  { skill: "Pandas" },
-  { skill: "Matplotlib" },
-  { skill: "PyTorch" },
-  { skill: "NLTK" },
-  { skill: "Jupyter Notebooks/Colab" },
-  { skill: "SQL" },
-  { skill: "NoSQL" },
-  { skill: "Tableau" },
-  { skill: "Linux" },
-  { skill: "Mac" },
-  { skill: "Windows" },
+  { skill: "Python" , icon:"/python.png"},
+  { skill: "R Programming" ,icon:"/R.png"},
+  { skill: "Computer Vision",icon:"/cv.png"},
+  { skill: "NLP" ,icon:"/nlp.png"},
+  { skill: "Statistics" ,icon:"/stat.png"},
+  { skill: "Spark" ,icon:"/spark.png"},
+  { skill: "Pandas" ,icon:"/pd.png"},
+  { skill: "JavaScript" ,icon:"/js.png"},
+  { skill: "C++/C Programming",icon:"/c.png" },
+  { icon:"/sk.png"},{ skill: "OS" },
+  { skill: "Numpy" ,icon:"/np.png"},
+  { skill: "Matplotlib" ,icon:"/plt.png"},
+  { skill: "PyTorch" ,icon:"/torch.png"},
+  { skill: "NLTK" ,icon:"/nltk.png"},
+  { skill: "Jupyter Notebooks/Colab" ,icon:"/jup.png"},
+  { skill: "SQL",icon:"/sql.png" },
+  { skill: "MongoDB" ,icon:"/mongo.png"},
+  { skill: "Tableau",icon:"/tab.png" },
+  { skill: "Linux",icon:"/linux.png" },
+  { icon:"/hadoop.png" },
+  { skill: "RDBMS" ,icon:"/rdbms.png"},
+  
 ]
 
 const AboutSection = () => {
@@ -64,24 +69,30 @@ const AboutSection = () => {
           <div className="text-center md:w-1/2 md:text-left">
             <h1 className="text-2xl font-bold mb-6">My Skills</h1>
             <div className="flex flex-wrap flex-row justify-center z-10 md:justify-start">
-              {skills.map((item, idx) => {
-                return (
-                  <p
-                    key={idx}
-                    className="bg-gray-200 px-4 py-2 mr-2 mt-2 text-gray-500 rounded font-semibold"
-                  >
-                    {item.skill}
-                  </p>
-                )
-              })}
+              {skills.map((item, idx) => (
+                <div key={idx} className="flex items-center bg-gray-200 px-4 py-2 mr-2 mt-2 text-gray-500 rounded font-semibold">
+                {item.skill ? (
+                  <div className="flex items-center">
+                    {item.icon&&<img src={item.icon} alt={`${item.skill} icon`} className="w-6 h-6 mr-2" />}
+                    <span>{item.skill}</span>
+                  </div>
+                ) : (
+                  <img src={item.icon} alt={`${item.skill} icon`} className="w-20 h-8" />
+                )}
+              </div>
+              
+              ))}
             </div>
-            <Image
-              src="/hero-image.png"
-              alt=""
-              width={325}
-              height={325}
-              className="hidden md:block md:relative md:bottom-4 md:left-32 md:z-0"
-            />
+            <div className="pt-10">
+              <Image
+                src="/hero-image.png"
+                alt=""
+                width={325}
+                height={325}
+                className="hidden md:block md:relative md:bottom-4 md:left-32 md:z-0"
+              />
+            </div>
+            
           </div>
         </div>
       </div>

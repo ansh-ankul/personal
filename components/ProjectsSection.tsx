@@ -14,8 +14,8 @@ const projects = [
       "- Improved predictive accuracy by 25% by applying NLP techniques, including sentiment analysis and word embeddings"+
       "(Word2Vec, GloVe), on 1 million+ accident descriptions.",
     image: "/accident.png",
-    github: "https://www.linkedin.com/in/ansh-ankul/",
-    link: "https://www.linkedin.com/in/ansh-ankul/",
+    github: "https://github.com/ansh-ankul",
+    link: "https://www.kaggle.com/anshankul",
   },
   {
     name: "Pneumonia Detection",
@@ -24,8 +24,8 @@ const projects = [
     "- Expanded the dataset by 150% using data augmentation, mitigating model overfitting and obtained validation accuracy of 95%.\n"+
     "- Coordinated a team of 5 to obtain an accuracy of 91.185% using transfer learning (Inception_v3, VGG-16).",
     image: "/pneumonia.png",
-    github: "https://www.linkedin.com/in/ansh-ankul/",
-    link: "https://www.linkedin.com/in/ansh-ankul/",
+    github: "https://github.com/ansh-ankul",
+    link: "https://www.kaggle.com/anshankul",
   },
   {
     name: "Warehouse Apparel Detector Web App",
@@ -35,8 +35,8 @@ const projects = [
       "efficiency by 20%.\n"+
       "- Triumphed an impressive detection accuracy rate of 85%, optimizing inventory management and reducing manual workload. ",
     image: "/warehouse.png",
-    github: "https://www.linkedin.com/in/ansh-ankul/",
-    link: "https://www.linkedin.com/in/ansh-ankul/",
+    github: "https://github.com/ansh-ankul",
+    link: "https://www.kaggle.com/anshankul",
   },
   {
     name: "Machine Translation",
@@ -46,8 +46,8 @@ const projects = [
       +"- Procured an accuracy of 80.42%, enabling data-driven decision-making and maximizing operational effectiveness."
        ,
     image: "/irish.png",
-    github: "https://www.linkedin.com/in/ansh-ankul/",
-    link: "https://www.linkedin.com/in/ansh-ankul/",
+    github: "https://github.com/ansh-ankul",
+    link: "https://www.kaggle.com/anshankul",
   },
   {
     name: "Churn Classification Using Deep Learning",
@@ -55,8 +55,8 @@ const projects = [
       "- A multi-class classification model was built using supervised learning techniques.\n"+
       "- Achieved an accuracy of 86%, using the ANN naive approach-based model.",
     image: "/churn.png",
-    github: "https://www.linkedin.com/in/ansh-ankul/",
-    link: "https://www.linkedin.com/in/ansh-ankul/",
+    github: "https://github.com/ansh-ankul",
+    link: "https://www.kaggle.com/anshankul",
   },
   {
     name: "Fashion Clothes - Image Classification",
@@ -64,8 +64,8 @@ const projects = [
       "- Developed an Artificial Neural Network architecture using the Fashion MNIST dataset to classify the image into 10 classes of clothing. \n"+
       "- Obtained an accuracy of 88% in classification.",
     image: "/clothes.png",
-    github: "https://www.linkedin.com/in/ansh-ankul/",
-    link: "https://www.linkedin.com/in/ansh-ankul/",
+    github: "https://github.com/ansh-ankul",
+    link: "https://www.kaggle.com/anshankul",
   },
 ]
 
@@ -83,13 +83,13 @@ const ProjectsSection = () => {
             <div key={idx}>
               <SlideUp offset="-300px 0px -300px 0px">
                 <div className="flex flex-col  animate-slideUpCubiBezier animation-delay-2 md:flex-row md:space-x-12">
-                  <div className=" md:w-1/2">
+                  <div className="w-full md:w-1/2 flex justify-center"> 
                     <Link href={project.link}>
                       <Image
                         src={project.image}
                         alt=""
-                        width={1000}
-                        height={1000}
+                        width={800}
+                        height={800}
                         className="rounded-xl shadow-xl hover:opacity-70"
                       />
                     </Link>

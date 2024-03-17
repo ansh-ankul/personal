@@ -27,6 +27,17 @@ const HeroSection = () => {
             based in Champaign, IL. As a data scientist, my goal is to develop and implement data-driven solutions that simplify and enrich everyday life.
           </p>
           <Link
+            to="education"
+            className="text-neutral-100 font-semibold px-6 py-3 bg-teal-600 rounded shadow hover:bg-teal-700"
+            activeClass="active"
+            spy={true}
+            smooth={true}
+            offset={-100}
+            duration={500}
+          >
+            Education
+          </Link><br/><br/>
+          <Link
             to="projects"
             className="text-neutral-100 font-semibold px-6 py-3 bg-teal-600 rounded shadow hover:bg-teal-700"
             activeClass="active"
