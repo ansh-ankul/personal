@@ -7,6 +7,16 @@ import Arrow from "./Arrow"
 
 const workex = [
   {
+    name: "YAHOO! - Software Engineering Intern - II / Data Science Intern",
+    description: 
+    "- Integrated machine learning algorithms such as Isolation Forest, DBSCAN, One-Class SVM, and Z-Score for anomaly detection, achieving a 25% increase in anomaly detection accuracy. \n"+
+    "- Designed a smart alerting mechanism that reduced false-positive alerts by 30%, ensuring more reliable and actionable notifications. \n"+
+    "- Collaborated with cross-functional teams to optimize data pipelines, reducing ETL processing time by 20%.\n",
+    image: "/yahoo.png",
+    github: "https://www.linkedin.com/in/ansh-ankul/",
+    link: "https://www.linkedin.com/in/ansh-ankul/",
+  },
+  {
     name: "UIUC - Graduate Research Assistant - Geotechnical Machine Learning",
     description: 
     "- Enhanced CO2 plume direction prediction and seismic fault analysis by 30%, using data with over 10,000 geological entries. \n"+

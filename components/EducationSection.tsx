@@ -14,7 +14,10 @@ const education = [
     "- CS444 - Deep Learning for Computer Vision\n"+
     "- STAT447 - Data Science Programming Methods\n"+
     "- STAT542 - Statistical Learning (Machine Learning)\n"+
-    "- STAT410 - Probability and Statistics\n",
+    "- STAT410 - Probability and Statistics\n"+
+    "- CS546 - Advanced Natural Language Processing\n"+
+    "- STAT429 - Time Series Analysis\n"+
+    "- STAT510 - Mathematical Statistics\n",
     image: "/uiuc.png",
     github: "https://illinois.edu/",
     link: "https://illinois.edu/",
