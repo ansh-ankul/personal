@@ -24,7 +24,7 @@ const HeroSection = () => {
             <span className="font-semibold text-teal-600">
               Data Scientist{" "}
             </span>
-            Based in Chicago, IL. As a data scientist with 2+ years of experience, my goal is to develop and implement data-driven solutions that simplify and enrich everyday life. <br/> My updated Resume: <a href="https://drive.google.com/file/d/1SeuBXdl_QBDBsFtKft6V_gQhVDc22HUy/view?usp=sharing">Read here</a>.
+            Based in Chicago, IL. As a data scientist with 2+ years of experience, my goal is to develop and implement data-driven solutions that simplify and enrich everyday life. <br/> My updated Resume: <a href="https://drive.google.com/file/d/1SeuBXdl_QBDBsFtKft6V_gQhVDc22HUy/view?usp=sharing" color="blue" >Read here</a>.
 
           </p>
           <Link
