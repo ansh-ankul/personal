@@ -2,12 +2,13 @@ import React from "react"
 import Image from "next/image"
 import Link from "next/link"
 import SlideUp from "./SlideUp"
-import Arrow from "./Arrow"
+import ScrollIndicator from "./ScrollIndicator"
 
 const education = [
   {
     name: "University of Illinois Urbana-Champaign",
     description: 
+    "Master of Science in Statistics\n"+
     "August 2023 - May 2025\n Key Coursework:\n"+
     "- STAT432: Basics of Statistical Learning (Machine Learning)\n"+
     "- STAT425 - Statistical Modeling\n"+
@@ -25,6 +26,7 @@ const education = [
   {
     name: "Manipal University Jaipur",
     description:
+    "Bachelor's Degree in Computer Science and CommunicationEngineering\n"+
     "July 2018 - November 2022 \n Key Coursework:\n"+
     "- Data Structures and Algorithms\n"+
     "- Linear Algebra\n"+
@@ -42,10 +44,11 @@ const education = [
 const EducationSection = () => {
   return (
     <section id="education">
-      <h1 className="my-10 text-center font-bold text-4xl">
+      <h1 className="mt-10 mb-2 text-center font-bold text-6xl">
         Education
-        <hr className="w-6 h-1 mx-auto my-4 bg-teal-500 border-0 rounded"></hr>
       </h1>
+      <ScrollIndicator className="mb-0" />
+      <hr className="w-6 h-1 mx-auto mt-0 mb-24 bg-teal-500 border-0 rounded"></hr>
 
       <div className="flex flex-col space-y-28">
         {education.map((project, idx) => {
@@ -82,8 +85,6 @@ const EducationSection = () => {
             </div>
           )
         })}
-
-        <Arrow/>
         
       </div>
     </section>

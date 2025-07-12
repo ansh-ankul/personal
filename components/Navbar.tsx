@@ -1,8 +1,8 @@
 "use client" // this is a client component
 import React from "react"
-import { useState } from "react"
-import { Link } from "react-scroll/modules"
-import { usePathname } from "next/navigation"
+import { useState, useEffect } from "react"
+import Link from "next/link"
+import { usePathname, useRouter } from "next/navigation"
 import { useTheme } from "next-themes"
 import { RiMoonFill, RiSunLine } from "react-icons/ri"
 import { IoMdMenu, IoMdClose } from "react-icons/io"
@@ -10,28 +10,30 @@ import { IoMdMenu, IoMdClose } from "react-icons/io"
 interface NavItem {
   label: string
   page: string
+  isScroll?: boolean
 }
 
 const NAV_ITEMS: Array<NavItem> = [
   {
     label: "Home",
-    page: "home",
+    page: "/",
   },
-  {
-    label: "About",
-    page: "about",
-  },
+  // {
+  //   label: "About",
+  //   page: "/",
+  //   isScroll: true,
+  // },
   {
     label: "Education",
-    page: "education",
+    page: "/education",
   },
   {
     label: "Work Experience",
-    page: "work",
+    page: "/work",
   },
   {
     label: "Projects",
-    page: "projects",
+    page: "/projects",
   },
   
 ]
@@ -40,13 +42,93 @@ export default function Navbar() {
   const { systemTheme, theme, setTheme } = useTheme()
   const currentTheme = theme === "system" ? systemTheme : theme
   const pathname = usePathname()
+  const router = useRouter()
   const [navbar, setNavbar] = useState(false)
+  const [activeSection, setActiveSection] = useState("home")
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (pathname === "/") {
+        const homeSection = document.getElementById("home")
+        const aboutSection = document.getElementById("about")
+        
+        if (homeSection && aboutSection) {
+          const homeRect = homeSection.getBoundingClientRect()
+          const aboutRect = aboutSection.getBoundingClientRect()
+          
+          // If about section is in view (top of about section is above viewport center)
+          if (aboutRect.top <= window.innerHeight / 2) {
+            setActiveSection("about")
+          } else {
+            setActiveSection("home")
+          }
+        }
+      }
+    }
+
+    if (pathname === "/") {
+      // Check if there's a hash in the URL
+      if (window.location.hash === "#about") {
+        setTimeout(() => {
+          const aboutSection = document.getElementById("about")
+          if (aboutSection) {
+            aboutSection.scrollIntoView({ behavior: "smooth" })
+            setActiveSection("about")
+          }
+        }, 100)
+      }
+      
+      window.addEventListener("scroll", handleScroll)
+      handleScroll() // Check initial position
+    } else {
+      setActiveSection("")
+    }
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+    }
+  }, [pathname])
+
+  const handleNavigation = (item: NavItem) => {
+    if (item.isScroll && pathname === "/") {
+      // If we're already on the home page, just scroll to about
+      const aboutSection = document.getElementById("about")
+      if (aboutSection) {
+        aboutSection.scrollIntoView({ behavior: "smooth" })
+      }
+    } else if (item.isScroll) {
+      // If we're on a different page, navigate to home with hash and scroll immediately
+      router.push("/#about")
+      setTimeout(() => {
+        const aboutSection = document.getElementById("about")
+        if (aboutSection) {
+          aboutSection.scrollIntoView({ behavior: "smooth" })
+          setActiveSection("about")
+        }
+      }, 50)
+    } else {
+      // Regular navigation
+      router.push(item.page)
+    }
+    setNavbar(false)
+  }
+
+  const isActive = (item: NavItem) => {
+    if (item.page === "/" && !item.isScroll) {
+      return pathname === "/" && activeSection === "home"
+    }
+    if (item.isScroll) {
+      return pathname === "/" && activeSection === "about"
+    }
+    return pathname === item.page
+  }
+
   return (
     <header className="w-full mx-auto px-4 sm:px-20 fixed top-0 z-50 rounded-b-2xl shadow-lg bg-white/70 dark:bg-stone-900/70 backdrop-blur-md border-b border-neutral-200 dark:border-stone-700 transition-all duration-500">
       <div className="justify-between md:items-center md:flex">
         <div>
           <div className="flex items-center justify-between py-3 md:py-5 md:block">
-            <Link to="home">
+            <Link href="/">
               <div className="container flex items-center space-x-2">
                 <h2 className="text-2xl font-bold tracking-tight text-teal-700 dark:text-teal-400">Ansh Ankul</h2>
               </div>
@@ -69,22 +151,33 @@ export default function Navbar() {
           >
             <div className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
               {NAV_ITEMS.map((item, idx) => {
+                const active = isActive(item)
                 return (
-                  <Link
+                  <button
                     key={idx}
-                    to={item.page}
-                    className={
-                      "block lg:inline-block text-neutral-900 dark:text-neutral-100 px-3 py-2 rounded-lg transition-colors duration-300 hover:bg-teal-100 hover:text-teal-700 dark:hover:bg-stone-800 dark:hover:text-teal-400 focus:outline-none focus:ring-2 focus:ring-teal-400"
-                    }
-                    activeClass="active"
-                    spy={true}
-                    smooth={true}
-                    offset={-100}
-                    duration={500}
-                    onClick={() => setNavbar(!navbar)}
+                    onClick={async (e) => {
+                      if (item.label === "Home") {
+                        e.preventDefault();
+                        if (pathname === "/") {
+                          window.scrollTo({ top: 0, behavior: "smooth" });
+                        } else {
+                          await router.push("/");
+                          setTimeout(() => {
+                            window.scrollTo({ top: 0, behavior: "smooth" });
+                          }, 100);
+                        }
+                      } else {
+                        handleNavigation(item);
+                      }
+                    }}
+                    className={`block lg:inline-block px-3 py-2 rounded-lg transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-teal-400 ${
+                      active 
+                        ? "bg-teal-100 text-teal-700 dark:bg-stone-800 dark:text-teal-400" 
+                        : "text-neutral-900 dark:text-neutral-100 hover:bg-teal-100 hover:text-teal-700 dark:hover:bg-stone-800 dark:hover:text-teal-400"
+                    }`}
                   >
                     {item.label}
-                  </Link>
+                  </button>
                 )
               })}
               {currentTheme === "dark" ? (

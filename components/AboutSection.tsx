@@ -45,7 +45,7 @@ const AboutSection = () => {
               <span className="font-bold">{"highly ambitious"}</span>,
               <span className="font-bold">{" self-motivated"}</span>, and
               <span className="font-bold">{" driven"}</span> Data Scientist
-              based in Champaign, IL.
+              based in Illinois.
             </p>
             <br />
             <p>

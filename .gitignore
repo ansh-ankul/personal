@@ -11,3 +11,16 @@ yarn-error.log*
 out/
 dist/
 coverage/
+# Ignore Mac system files
+*.DS_Store
+# Ignore log files
+*.log
+# Ignore build artifacts
+build/
+# Ignore temp files
+*.tmp
+# Ignore local env files
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
