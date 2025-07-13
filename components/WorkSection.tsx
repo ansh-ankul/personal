@@ -12,7 +12,7 @@ const workex = [
     "Worked under Prof. Vikram Adve to build AI-AgriBench, an ML benchmark suite supporting 6+ datasets and 10+ models; streamlined training/evaluation pipelines reduced preprocessing time by 25%. " +
     "Deployed interactive Flask dashboards, a RAG-based assistant, and anomaly detection modules-boosted insight discovery and outlier flagging accuracy by 30%. " +
     "Led LLM evaluation (GPT-4.1, LLaMA, Gemini-Pro) across 500+ retrieval/summarization tasks using precision, recall, and grounding-based metrics-achieved around 90% faithfulness in top-performing configurations.",
-    image: "/ncsa.png",
+    image: "/ncsa.jpg",
     github: "https://www.linkedin.com/in/ansh-ankul/",
     link: "https://www.linkedin.com/in/ansh-ankul/",
   },
