@@ -41,30 +41,25 @@ const AboutSection = () => {
               Get to know me!
             </h1>
             <p>
-              Hi, my name is Ansh and I am a{" "}
-              <span className="font-bold">{"highly ambitious"}</span>,
-              <span className="font-bold">{" self-motivated"}</span>, and
-              <span className="font-bold">{" driven"}</span> Data Scientist
-              based in Illinois.
-            </p>
-            <br />
-            <p>
-            Currently, I am pursuing a Master's in <span className="font-bold">{"Statistics - Analytics Track"}</span> at 
-            the University of Illinois at Urbana-Champaign, with a 
-            focus on Data science methodologies and applications.
-            </p>
-            <br />
-            <p>
-            My hobbies span a wide range, from photography to watching
-             movies, listening to music, dancing, and participating in 
-             theater. I also enjoy sports like snooker and table tennis. 
-             Each of these activities keeps me engaged and continuously 
-             learning, adding unique dimensions to my life.
-            </p>
-            <br />
-            <p>
-              I am driven by the philosophy that personal growth is a never-ending journey. With a deep-seated passion for technology and an innate desire to explore the bounds of the possible, I am constantly seeking to expand my horizons. My career is a path of discovery and I eagerly anticipate each new chapter, always remaining open to fresh opportunities and novel experiences.
-            </p>
+  Hi, my name is Ansh and I am a{" "}
+  <span className="font-bold">highly ambitious</span>,
+  <span className="font-bold"> self-motivated</span>, and
+  <span className="font-bold"> driven</span> Data Scientist and Software Engineer
+  based in Illinois.
+</p>
+<br />
+<p>
+  I hold a Master’s in <span className="font-bold">Statistics</span> from the University of Illinois at Urbana-Champaign, with a focus on data science methodologies and software applications.
+</p>
+<br />
+<p>
+  Outside of work, I enjoy photography, movies, music, dancing, and theater. I’m also passionate about sports like snooker and table tennis. These hobbies keep me engaged, creative, and always learning.
+</p>
+<br />
+<p>
+  I believe personal growth is a lifelong journey. With a deep passion for technology and a drive to explore new possibilities, I’m always seeking fresh challenges and opportunities to grow—both professionally and personally.
+</p>
+
           </div>
           <div className="text-center md:w-1/2 md:text-left">
             <h1 className="text-2xl font-bold mb-6">My Skills</h1>

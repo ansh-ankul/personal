@@ -18,7 +18,7 @@ const HeroSection = () => {
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-gradient-to-tr from-teal-200 via-teal-100 to-white rounded-full blur-3xl opacity-60 -z-10"></div>
         <div className="md:mt-2 md:w-1/2 flex justify-center">
           <Image
-            src="/headshot.jpeg"
+            src="/ansh.jpg"
             alt=""
             width={325}
             height={325}
@@ -30,9 +30,9 @@ const HeroSection = () => {
           <p className="text-lg mt-4 mb-6 md:text-2xl">
             I&#39;m a{" "}
             <span className="font-semibold text-teal-600">
-              Data Scientist{" "}
+              Developer{" "}
             </span>
-            Based in Chicago, IL. As a data scientist with 2+ years of experience, my goal is to develop and implement data-driven solutions that simplify and enrich everyday life.
+             based in Chicago, IL, with 2+ years of experience building data-driven applications and scalable software solutions that make everyday life easier.
           </p>
           <div className="flex flex-col md:flex-row gap-4 mt-6">
             <Link
