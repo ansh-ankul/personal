@@ -18,7 +18,7 @@ const HeroSection = () => {
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-gradient-to-tr from-teal-200 via-teal-100 to-white rounded-full blur-3xl opacity-60 -z-10"></div>
         <div className="md:mt-2 md:w-1/2 flex justify-center">
           <Image
-            src="/ansh.jpg"
+            src="/ansh.jpeg"
             alt=""
             width={325}
             height={325}
