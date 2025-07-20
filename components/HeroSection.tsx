@@ -28,9 +28,9 @@ const HeroSection = () => {
         <div className="md:mt-2 md:w-3/5">
           <h1 className="text-4xl font-bold mt-6 md:mt-0 md:text-7xl animate-fadeInUp">Hi, I&#39;m Ansh!</h1>
           <p className="text-lg mt-4 mb-6 md:text-2xl">
-            I&#39;m a{" "}
+            I&#39;m an{" "}
             <span className="font-semibold text-teal-600">
-              Developer{" "}
+              Engineer{" "}
             </span>
              based in Chicago, IL, with 2+ years of experience building data-driven applications and scalable software solutions that make everyday life easier.
           </p>
