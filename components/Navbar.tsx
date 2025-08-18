@@ -132,13 +132,10 @@ export default function Navbar() {
         <div>
           <div className="flex items-center justify-between py-4 md:py-6 md:block">
             <Link href="/">
-              <div className="container flex items-center space-x-2 group">
-                <div className="relative">
-                  <div className="absolute inset-0 bg-gradient-to-r from-teal-500 to-blue-500 rounded-lg blur opacity-25 group-hover:opacity-40 transition-opacity duration-300"></div>
-                  <h2 className="relative text-2xl font-bold tracking-tight bg-gradient-to-r from-teal-600 to-blue-600 bg-clip-text text-transparent group-hover:from-teal-700 group-hover:to-blue-700 transition-all duration-300 hover:scale-105">
-                    Ansh Ankul
-                  </h2>
-                </div>
+              <div className="container flex items-center space-x-2">
+                <h2 className="text-2xl font-bold tracking-tight text-teal-600 dark:text-teal-400">
+                  Ansh Ankul
+                </h2>
               </div>
             </Link>
             <div className="md:hidden">
