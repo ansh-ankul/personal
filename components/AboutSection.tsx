@@ -28,67 +28,87 @@ const skills = [
 
 const AboutSection = () => {
   return (
-    <section id="about">
-      <div className="my-12 pb-12 md:pt-16 md:pb-48">
-        <h1 className="text-center font-bold text-4xl">
-          About Me
-          <hr className="w-6 h-1 mx-auto my-4 bg-teal-500 border-0 rounded"></hr>
-        </h1>
+    <section id="about" className="relative py-20 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-gray-800">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
+      
+      <div className="container mx-auto px-6">
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <h1 className="text-5xl font-bold text-gray-900 dark:text-white mb-4">
+            About Me
+          </h1>
+          <div className="w-24 h-1 bg-gradient-to-r from-teal-500 to-blue-500 mx-auto rounded-full"></div>
+        </div>
 
-        <div className="flex flex-col space-y-10 items-stretch justify-center align-top md:space-x-10 md:space-y-0 md:p-4 md:flex-row md:text-left">
-          <div className="md:w-1/2 ">
-            <h1 className="text-center text-2xl font-bold mb-6 md:text-left">
-              Get to know me!
-            </h1>
-            <p>
-  Hi, my name is Ansh and I am a{" "}
-  <span className="font-bold">highly ambitious</span>,
-  <span className="font-bold"> self-motivated</span>, and
-  <span className="font-bold"> driven</span> Data Scientist and Software Engineer
-  based in Illinois.
-</p>
-<br />
-<p>
-  I hold a Master’s in <span className="font-bold">Statistics</span> from the University of Illinois at Urbana-Champaign, with a focus on data science methodologies and software applications.
-</p>
-<br />
-<p>
-  Outside of work, I enjoy photography, movies, music, dancing, and theater. I’m also passionate about sports like snooker and table tennis. These hobbies keep me engaged, creative, and always learning.
-</p>
-<br />
-<p>
-  I believe personal growth is a lifelong journey. With a deep passion for technology and a drive to explore new possibilities, I’m always seeking fresh challenges and opportunities to grow—both professionally and personally.
-</p>
-
-          </div>
-          <div className="text-center md:w-1/2 md:text-left">
-            <h1 className="text-2xl font-bold mb-6">My Skills</h1>
-            <div className="flex flex-wrap flex-row justify-center z-10 md:justify-start">
-              {skills.map((item, idx) => (
-                <div key={idx} className="flex items-center bg-gray-200 px-4 py-2 mr-2 mt-2 text-gray-500 rounded font-semibold">
-                {item.skill ? (
-                  <div className="flex items-center">
-                    {item.icon&&<img src={item.icon} alt={`${item.skill} icon`} className="w-6 h-6 mr-2" />}
-                    <span>{item.skill}</span>
-                  </div>
-                ) : (
-                  <img src={item.icon} alt={`${item.skill} icon`} className="w-20 h-8" />
-                )}
-              </div>
+                <div className="max-w-4xl mx-auto space-y-16">
+          {/* About Content */}
+          <div className="text-center">
+            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-8">
+              <span className="bg-gradient-to-r from-teal-500 to-blue-500 bg-clip-text text-transparent">
+                Get to know me!
+              </span>
+            </h2>
+            
+            <div className="space-y-6 text-gray-600 dark:text-gray-300 leading-relaxed text-lg max-w-3xl mx-auto">
+              <p>
+                Hi, my name is <span className="font-bold text-teal-600">Ansh</span> and I am a{" "}
+                <span className="font-bold text-blue-600">highly ambitious</span>,{" "}
+                <span className="font-bold text-purple-600">self-motivated</span>, and{" "}
+                <span className="font-bold text-teal-600">driven</span> Data Scientist and Software Engineer
+                based in Illinois.
+              </p>
               
+              <p>
+                I hold a Master's in{" "}
+                <span className="font-bold text-blue-600">Statistics</span> from the University of Illinois at Urbana-Champaign, 
+                with a focus on data science methodologies and software applications.
+              </p>
+              
+              <p>
+                I'm passionate about <span className="font-semibold text-teal-600">coding</span> and{" "}
+                <span className="font-semibold text-blue-600">building innovative solutions</span> that leverage the power of{" "}
+                <span className="font-semibold text-purple-600">data and artificial intelligence</span>. I love diving deep into{" "}
+                <span className="font-semibold text-teal-600">machine learning algorithms</span>,{" "}
+                <span className="font-semibold text-blue-600">data analysis</span>, and{" "}
+                <span className="font-semibold text-purple-600">software development</span> to create impactful applications.
+              </p>
+              
+              <p>
+                My enthusiasm for <span className="font-semibold text-teal-600">technology and AI</span> drives me to continuously learn and explore new{" "}
+                <span className="font-semibold text-blue-600">programming languages</span>,{" "}
+                <span className="font-semibold text-purple-600">frameworks</span>, and{" "}
+                <span className="font-semibold text-teal-600">data science methodologies</span>. I believe in the transformative power of{" "}
+                <span className="font-semibold text-blue-600">data-driven solutions</span> and am always excited to tackle new challenges in this rapidly evolving field.
+              </p>
+            </div>
+          </div>
+
+          {/* Skills Section */}
+          <div className="text-center">
+            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-8">
+              <span className="bg-gradient-to-r from-teal-500 to-blue-500 bg-clip-text text-transparent">
+                My Skills
+              </span>
+            </h2>
+            
+            <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
+              {skills.map((item, idx) => (
+                <div key={idx} className="flex items-center bg-white dark:bg-gray-800 px-4 py-3 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-200 dark:border-gray-700">
+                  {item.skill ? (
+                    <div className="flex items-center">
+                      {item.icon && <img src={item.icon} alt={`${item.skill} icon`} className="w-5 h-5 mr-2" />}
+                      <span className="text-gray-700 dark:text-gray-300 font-medium">{item.skill}</span>
+                    </div>
+                  ) : (
+                    <img src={item.icon} alt="skill icon" className="w-16 h-6" />
+                  )}
+                </div>
               ))}
             </div>
-            <div className="pt-10">
-              <Image
-                src="/hero-image.png"
-                alt=""
-                width={325}
-                height={325}
-                className="hidden md:block md:relative md:bottom-4 md:left-32 md:z-0"
-              />
-            </div>
-            
           </div>
+
+
         </div>
       </div>
     </section>

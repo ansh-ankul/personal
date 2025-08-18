@@ -6,10 +6,12 @@ import { usePathname, useRouter } from "next/navigation"
 import { useTheme } from "next-themes"
 import { RiMoonFill, RiSunLine } from "react-icons/ri"
 import { IoMdMenu, IoMdClose } from "react-icons/io"
+import { FaHome, FaGraduationCap, FaBriefcase, FaCode } from "react-icons/fa"
 
 interface NavItem {
   label: string
   page: string
+  icon: React.ReactNode
   isScroll?: boolean
 }
 
@@ -17,25 +19,23 @@ const NAV_ITEMS: Array<NavItem> = [
   {
     label: "Home",
     page: "/",
+    icon: <FaHome className="w-4 h-4" />,
   },
-  // {
-  //   label: "About",
-  //   page: "/",
-  //   isScroll: true,
-  // },
   {
     label: "Education",
     page: "/education",
+    icon: <FaGraduationCap className="w-4 h-4" />,
   },
   {
-    label: "Work Experience",
+    label: "Experience",
     page: "/work",
+    icon: <FaBriefcase className="w-4 h-4" />,
   },
   {
     label: "Projects",
     page: "/projects",
+    icon: <FaCode className="w-4 h-4" />,
   },
-  
 ]
 
 export default function Navbar() {
@@ -45,9 +45,13 @@ export default function Navbar() {
   const router = useRouter()
   const [navbar, setNavbar] = useState(false)
   const [activeSection, setActiveSection] = useState("home")
+  const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
+      const isScrolled = window.scrollY > 20
+      setScrolled(isScrolled)
+
       if (pathname === "/") {
         const homeSection = document.getElementById("home")
         const aboutSection = document.getElementById("about")
@@ -56,7 +60,6 @@ export default function Navbar() {
           const homeRect = homeSection.getBoundingClientRect()
           const aboutRect = aboutSection.getBoundingClientRect()
           
-          // If about section is in view (top of about section is above viewport center)
           if (aboutRect.top <= window.innerHeight / 2) {
             setActiveSection("about")
           } else {
@@ -67,7 +70,6 @@ export default function Navbar() {
     }
 
     if (pathname === "/") {
-      // Check if there's a hash in the URL
       if (window.location.hash === "#about") {
         setTimeout(() => {
           const aboutSection = document.getElementById("about")
@@ -79,7 +81,7 @@ export default function Navbar() {
       }
       
       window.addEventListener("scroll", handleScroll)
-      handleScroll() // Check initial position
+      handleScroll()
     } else {
       setActiveSection("")
     }
@@ -91,13 +93,11 @@ export default function Navbar() {
 
   const handleNavigation = (item: NavItem) => {
     if (item.isScroll && pathname === "/") {
-      // If we're already on the home page, just scroll to about
       const aboutSection = document.getElementById("about")
       if (aboutSection) {
         aboutSection.scrollIntoView({ behavior: "smooth" })
       }
     } else if (item.isScroll) {
-      // If we're on a different page, navigate to home with hash and scroll immediately
       router.push("/#about")
       setTimeout(() => {
         const aboutSection = document.getElementById("about")
@@ -107,7 +107,6 @@ export default function Navbar() {
         }
       }, 50)
     } else {
-      // Regular navigation
       router.push(item.page)
     }
     setNavbar(false)
@@ -124,32 +123,41 @@ export default function Navbar() {
   }
 
   return (
-    <header className="w-full mx-auto px-4 sm:px-20 fixed top-0 z-50 rounded-b-2xl shadow-lg bg-white/70 dark:bg-stone-900/70 backdrop-blur-md border-b border-neutral-200 dark:border-stone-700 transition-all duration-500">
+    <header className={`w-full mx-auto px-4 sm:px-20 fixed top-0 z-50 transition-all duration-500 ${
+      scrolled 
+        ? "bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl shadow-xl border-b border-gray-200/60 dark:border-gray-700/60" 
+        : "bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg"
+    }`}>
       <div className="justify-between md:items-center md:flex">
         <div>
-          <div className="flex items-center justify-between py-3 md:py-5 md:block">
+          <div className="flex items-center justify-between py-4 md:py-6 md:block">
             <Link href="/">
-              <div className="container flex items-center space-x-2">
-                <h2 className="text-2xl font-bold tracking-tight text-teal-700 dark:text-teal-400">Ansh Ankul</h2>
+              <div className="container flex items-center space-x-2 group">
+                <div className="relative">
+                  <div className="absolute inset-0 bg-gradient-to-r from-teal-500 to-blue-500 rounded-lg blur opacity-25 group-hover:opacity-40 transition-opacity duration-300"></div>
+                  <h2 className="relative text-2xl font-bold tracking-tight bg-gradient-to-r from-teal-600 to-blue-600 bg-clip-text text-transparent group-hover:from-teal-700 group-hover:to-blue-700 transition-all duration-300 hover:scale-105">
+                    Ansh Ankul
+                  </h2>
+                </div>
               </div>
             </Link>
             <div className="md:hidden">
               <button
-                className="p-2 text-gray-700 rounded-md outline-none focus:border-teal-400 focus:border bg-white/80 dark:bg-stone-800/80 shadow"
+                className="p-3 text-gray-700 dark:text-gray-300 rounded-xl outline-none focus:ring-2 focus:ring-teal-400 bg-white/80 dark:bg-gray-800/80 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
                 onClick={() => setNavbar(!navbar)}
               >
-                {navbar ? <IoMdClose size={30} /> : <IoMdMenu size={30} />}
+                {navbar ? <IoMdClose size={24} /> : <IoMdMenu size={24} />}
               </button>
             </div>
           </div>
         </div>
         <div>
           <div
-            className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${
-              navbar ? "block" : "hidden"
+            className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 transition-all duration-300 ${
+              navbar ? "block opacity-100" : "hidden md:block"
             }`}
           >
-            <div className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
+            <div className="items-center justify-center space-y-8 md:flex md:space-x-2 md:space-y-0">
               {NAV_ITEMS.map((item, idx) => {
                 const active = isActive(item)
                 return (
@@ -170,31 +178,41 @@ export default function Navbar() {
                         handleNavigation(item);
                       }
                     }}
-                    className={`block lg:inline-block px-3 py-2 rounded-lg transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-teal-400 ${
+                    className={`group relative flex items-center space-x-2 px-4 py-3 rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-teal-400 hover:scale-105 ${
                       active 
-                        ? "bg-teal-100 text-teal-700 dark:bg-stone-800 dark:text-teal-400" 
-                        : "text-neutral-900 dark:text-neutral-100 hover:bg-teal-100 hover:text-teal-700 dark:hover:bg-stone-800 dark:hover:text-teal-400"
+                        ? "bg-gradient-to-r from-teal-500 to-blue-500 text-white shadow-lg transform scale-105" 
+                        : "text-gray-700 dark:text-gray-300 hover:bg-gradient-to-r hover:from-teal-50 hover:to-blue-50 dark:hover:from-teal-900/20 dark:hover:to-blue-900/20"
                     }`}
                   >
-                    {item.label}
+                                         <span className={`transition-all duration-300 ${
+                       active ? "text-white scale-110" : "text-teal-600 dark:text-teal-400 group-hover:text-teal-700 group-hover:scale-110"
+                     }`}>
+                       {item.icon}
+                     </span>
+                    <span className="font-medium">{item.label}</span>
+                    {active && (
+                      <div className="absolute inset-0 bg-gradient-to-r from-teal-500 to-blue-500 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
+                    )}
                   </button>
                 )
               })}
-              {currentTheme === "dark" ? (
-                <button
-                  onClick={() => setTheme("light")}
-                  className="bg-slate-100 p-2 rounded-xl shadow hover:bg-teal-100 transition-colors"
-                >
-                  <RiSunLine size={25} color="black" />
-                </button>
-              ) : (
-                <button
-                  onClick={() => setTheme("dark")}
-                  className="bg-slate-100 p-2 rounded-xl shadow hover:bg-teal-100 transition-colors"
-                >
-                  <RiMoonFill size={25} />
-                </button>
-              )}
+                             <div className="flex items-center space-x-2">
+                 {currentTheme === "dark" ? (
+                   <button
+                     onClick={() => setTheme("light")}
+                     className="p-3 bg-gradient-to-r from-yellow-100 to-orange-100 dark:from-yellow-900/30 dark:to-orange-900/30 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 hover:from-yellow-200 hover:to-orange-200 dark:hover:from-yellow-800/40 dark:hover:to-orange-800/40"
+                   >
+                     <RiSunLine size={20} className="text-yellow-600 dark:text-yellow-400" />
+                   </button>
+                 ) : (
+                   <button
+                     onClick={() => setTheme("dark")}
+                     className="p-3 bg-gradient-to-r from-gray-100 to-slate-100 dark:from-gray-800 dark:to-slate-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 hover:from-gray-200 hover:to-slate-200 dark:hover:from-gray-700 dark:hover:to-slate-700"
+                   >
+                     <RiMoonFill size={20} className="text-gray-700 dark:text-gray-300" />
+                   </button>
+                 )}
+               </div>
             </div>
           </div>
         </div>

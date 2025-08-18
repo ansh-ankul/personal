@@ -26,7 +26,7 @@ const education = [
   {
     name: "Manipal University Jaipur",
     description:
-    "Bachelor's Degree in Computer Science and CommunicationEngineering\n"+
+    "Bachelor's Degree in Computer Science and Communication Engineering\n"+
     "July 2018 - November 2022 \n Key Coursework:\n"+
     "- Data Structures and Algorithms\n"+
     "- Linear Algebra\n"+
@@ -50,42 +50,69 @@ const EducationSection = () => {
       <ScrollIndicator className="mb-0" />
       <hr className="w-6 h-1 mx-auto mt-0 mb-24 bg-teal-500 border-0 rounded"></hr>
 
-      <div className="flex flex-col space-y-28">
+      <div className="grid grid-cols-1 gap-8">
         {education.map((project, idx) => {
           return (
             <div key={idx}>
               <SlideUp offset="-300px 0px -300px 0px">
-                <div className="flex flex-col  animate-slideUpCubiBezier animation-delay-2 md:flex-row md:space-x-12">
-                  <div className=" md:w-1/2">
-                    <Link href={project.link}>
-                    <div style={{ backgroundColor: 'white', display: 'inline-block' }}>
-                        <Image
-                          src={project.image}
-                          alt=""
-                          width={1000}
-                          height={1000}
-                          className="rounded-xl shadow-xl hover:opacity-70"
-                        />
+                <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-300 overflow-hidden border border-gray-200 dark:border-gray-700">
+                  <div className="flex flex-col lg:flex-row">
+                    <div className="lg:w-2/5 p-6 flex items-center justify-center bg-gradient-to-br from-teal-50 to-blue-50 dark:from-gray-700 dark:to-gray-600">
+                      <Link href={project.link}>
+                        <div className="relative group">
+                          <Image
+                            src={project.image}
+                            alt=""
+                            width={400}
+                            height={400}
+                            className="rounded-xl shadow-lg group-hover:scale-105 transition-transform duration-300 object-contain max-h-64 bg-white p-4"
+                          />
+                          <div className="absolute inset-0 bg-teal-500 bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300 rounded-xl"></div>
+                        </div>
+                      </Link>
+                    </div>
+                    <div className="lg:w-3/5 p-8">
+                      <div className="mb-4">
+                        <h1 className="text-2xl font-bold mb-4 text-gray-800 dark:text-white border-b-2 border-teal-500 pb-2">
+                          {project.name}
+                        </h1>
                       </div>
-                    </Link>
-                  </div>
-                  <div className="mt-8 md:w-1/2">
-                    <h1 className="text-2xl font-bold mb-6">{project.name}</h1>
-                    <p className="text--1xl leading-7 mb-4 text-neutral-600 dark:text-neutral-400">
-                    {project.description.split('\n').map((line, index) => (
-                      <React.Fragment key={index}>
-                        {line}
-                        <br />
-                      </React.Fragment>
-                     ))}
-                    </p>
+                      <div className="space-y-4">
+                        <div className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                          {project.description.split('\n').map((line, index) => {
+                            if (line.includes('Key Coursework:')) {
+                              return (
+                                <React.Fragment key={index}>
+                                  <div className="font-semibold text-gray-700 dark:text-gray-200 mt-4 mb-2">
+                                    {line}
+                                  </div>
+                                </React.Fragment>
+                              )
+                            } else if (line.startsWith('- ')) {
+                              return (
+                                <React.Fragment key={index}>
+                                  <div className="ml-4 text-gray-600 dark:text-gray-300">
+                                    {line}
+                                  </div>
+                                </React.Fragment>
+                              )
+                            } else {
+                              return (
+                                <React.Fragment key={index}>
+                                  <div className="mb-2">{line}</div>
+                                </React.Fragment>
+                              )
+                            }
+                          })}
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </SlideUp>
             </div>
           )
         })}
-        
       </div>
     </section>
   )
