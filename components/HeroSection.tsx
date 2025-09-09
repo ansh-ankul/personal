@@ -61,7 +61,7 @@ const HeroSection = () => {
                   </span>
                 </h2>
                 <p className="text-lg lg:text-xl text-gray-600 dark:text-gray-400 leading-relaxed">
-                  Based in Chicago, IL, with 2+ years of experience building data-driven applications 
+                  I have 2+ years of experience building data-driven applications 
                   and scalable software solutions that make everyday life easier.
                 </p>
               </div>
