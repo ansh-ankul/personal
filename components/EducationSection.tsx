@@ -1,121 +1,44 @@
-import React from "react"
-import Image from "next/image"
-import Link from "next/link"
-import SlideUp from "./SlideUp"
-import ScrollIndicator from "./ScrollIndicator"
+import { ArrowUpRight } from "lucide-react"
+import { education } from "@/lib/portfolio"
 
-const education = [
-  {
-    name: "University of Illinois Urbana-Champaign",
-    description: 
-    "Master of Science in Statistics\n"+
-    "August 2023 - May 2025\n Key Coursework:\n"+
-    "- STAT432: Basics of Statistical Learning (Machine Learning)\n"+
-    "- STAT425 - Statistical Modeling\n"+
-    "- CS444 - Deep Learning for Computer Vision\n"+
-    "- STAT447 - Data Science Programming Methods\n"+
-    "- STAT542 - Statistical Learning (Machine Learning)\n"+
-    "- STAT410 - Probability and Statistics\n"+
-    "- CS546 - Advanced Natural Language Processing\n"+
-    "- STAT429 - Time Series Analysis\n"+
-    "- STAT510 - Mathematical Statistics\n",
-    image: "/uiuc.png",
-    github: "https://illinois.edu/",
-    link: "https://illinois.edu/",
-  },
-  {
-    name: "Manipal University Jaipur",
-    description:
-    "Bachelor's Degree in Computer Science and Communication Engineering\n"+
-    "July 2018 - November 2022 \n Key Coursework:\n"+
-    "- Data Structures and Algorithms\n"+
-    "- Linear Algebra\n"+
-    "- Machine Learning\n"+
-    "- Deep Learning\n"+
-    "- Relational Database Management System\n"+
-    "- Operating System",
-    
-    image: "/manipal.jpeg",
-    github: "https://www.onlinemanipal.com/international/online-degree-courses?utm_source=Google_INTL&utm_medium=CPC&utm_campaign=GGL_SRCH_Brand_Core_Generic_US-CA&utm_content=Core_Generic_Brand_Exact&utm_keyword=manipal%20university%20jaipur&matchtype=e&utm_adset=g&utm_placement=&gad_source=1&gclid=Cj0KCQjwhtWvBhD9ARIsAOP0GognSBjCJPgL_DTkJPycU1jgp4QT3Yn5iRQ0-HxBNgLcOCqp3XVyVCMaAhJ7EALw_wcB",
-    link: "https://www.onlinemanipal.com/international/online-degree-courses?utm_source=Google_INTL&utm_medium=CPC&utm_campaign=GGL_SRCH_Brand_Core_Generic_US-CA&utm_content=Core_Generic_Brand_Exact&utm_keyword=manipal%20university%20jaipur&matchtype=e&utm_adset=g&utm_placement=&gad_source=1&gclid=Cj0KCQjwhtWvBhD9ARIsAOP0GognSBjCJPgL_DTkJPycU1jgp4QT3Yn5iRQ0-HxBNgLcOCqp3XVyVCMaAhJ7EALw_wcB",
-  },
-]
-
-const EducationSection = () => {
+export default function EducationSection() {
   return (
-    <section id="education">
-      <h1 className="mt-10 mb-2 text-center font-bold text-6xl">
-        Education
-      </h1>
-      <ScrollIndicator className="mb-0" />
-      <hr className="w-6 h-1 mx-auto mt-0 mb-24 bg-teal-500 border-0 rounded"></hr>
-
-      <div className="grid grid-cols-1 gap-8">
-        {education.map((project, idx) => {
-          return (
-            <div key={idx}>
-              <SlideUp offset="-300px 0px -300px 0px">
-                <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-300 overflow-hidden border border-gray-200 dark:border-gray-700">
-                  <div className="flex flex-col lg:flex-row">
-                    <div className="lg:w-2/5 p-6 flex items-center justify-center bg-gradient-to-br from-teal-50 to-blue-50 dark:from-gray-700 dark:to-gray-600">
-                      <Link href={project.link}>
-                        <div className="relative group">
-                          <Image
-                            src={project.image}
-                            alt=""
-                            width={400}
-                            height={400}
-                            className="rounded-xl shadow-lg group-hover:scale-105 transition-transform duration-300 object-contain max-h-64 bg-white p-4"
-                          />
-                          <div className="absolute inset-0 bg-teal-500 bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300 rounded-xl"></div>
-                        </div>
-                      </Link>
-                    </div>
-                    <div className="lg:w-3/5 p-8">
-                      <div className="mb-4">
-                        <h1 className="text-2xl font-bold mb-4 text-gray-800 dark:text-white border-b-2 border-teal-500 pb-2">
-                          {project.name}
-                        </h1>
-                      </div>
-                      <div className="space-y-4">
-                        <div className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                          {project.description.split('\n').map((line, index) => {
-                            if (line.includes('Key Coursework:')) {
-                              return (
-                                <React.Fragment key={index}>
-                                  <div className="font-semibold text-gray-700 dark:text-gray-200 mt-4 mb-2">
-                                    {line}
-                                  </div>
-                                </React.Fragment>
-                              )
-                            } else if (line.startsWith('- ')) {
-                              return (
-                                <React.Fragment key={index}>
-                                  <div className="ml-4 text-gray-600 dark:text-gray-300">
-                                    {line}
-                                  </div>
-                                </React.Fragment>
-                              )
-                            } else {
-                              return (
-                                <React.Fragment key={index}>
-                                  <div className="mb-2">{line}</div>
-                                </React.Fragment>
-                              )
-                            }
-                          })}
-                        </div>
-                      </div>
-                    </div>
+    <section className="education-section details-section" aria-label="Education and coursework">
+      <div className="container">
+        <div className="education-list">
+          {education.map((entry, index) => (
+            <article className="education-row" key={entry.id}>
+              <div className="education-aside">
+                <span className="detail-index" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+                <div>
+                  <p className="education-level">{entry.id === "illinois" ? "Graduate studies" : "Undergraduate studies"}</p>
+                  <p className="education-period">{entry.period}</p>
+                  <div className="education-emblem" aria-hidden="true">
+                    {entry.id === "illinois" ? "I" : "M"}
+                    <span>{entry.id === "illinois" ? "ILLINOIS" : "MANIPAL"}</span>
                   </div>
                 </div>
-              </SlideUp>
-            </div>
-          )
-        })}
+              </div>
+              <div className="education-content">
+                <h2 className="education-institution">{entry.institution}</h2>
+                <p className="education-degree">{entry.degree}</p>
+                <p className="education-description">{entry.description}</p>
+                <div className="education-coursework">
+                  <h3>Coursework & foundations</h3>
+                  <ul className="detail-tags education-courses">
+                    {entry.courses.map((course) => <li key={course}>{course}</li>)}
+                  </ul>
+                </div>
+                {entry.id === "illinois" && (
+                  <a href={entry.href} className="text-link education-school-link" target="_blank" rel="noopener noreferrer">
+                    Explore the university <ArrowUpRight size={16} aria-hidden="true" />
+                  </a>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   )
 }
-
-export default EducationSection

@@ -1,23 +1,15 @@
-"use client"
 import "../styles/globals.css"
 import Navbar from "@/components/Navbar"
 import Footer from "@/components/Footer"
-import { ThemeProvider } from "next-themes"
+import ThemeProvider from "@/components/ThemeProvider"
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      {/*
-        <head /> will contain the components returned by the nearest parent
-        head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
-      */}
+    <html lang="en" suppressHydrationWarning>
       <head />
-      <body className="dark:bg-gradient-to-br dark:from-stone-900 dark:to-stone-800 bg-gradient-to-br from-white to-neutral-100 min-h-screen transition-colors duration-500">
-        <ThemeProvider enableSystem={true} attribute="class">
+      <body>
+        <ThemeProvider>
+          <a className="skip-link" href="#main-content">Skip to content</a>
           <Navbar />
           {children}
           <Footer />

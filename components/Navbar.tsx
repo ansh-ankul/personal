@@ -1,219 +1,83 @@
-"use client" // this is a client component
-import React from "react"
-import { useState, useEffect } from "react"
+"use client"
+
+import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
-import { usePathname, useRouter } from "next/navigation"
+import { usePathname } from "next/navigation"
 import { useTheme } from "next-themes"
-import { RiMoonFill, RiSunLine } from "react-icons/ri"
-import { IoMdMenu, IoMdClose } from "react-icons/io"
-import { FaHome, FaGraduationCap, FaBriefcase, FaCode } from "react-icons/fa"
+import { ArrowUpRight, Menu, Moon, Sun, X } from "lucide-react"
+import { profile } from "@/lib/portfolio"
 
-interface NavItem {
-  label: string
-  page: string
-  icon: React.ReactNode
-  isScroll?: boolean
-}
-
-const NAV_ITEMS: Array<NavItem> = [
-  {
-    label: "Home",
-    page: "/",
-    icon: <FaHome className="w-4 h-4" />,
-  },
-  {
-    label: "Education",
-    page: "/education",
-    icon: <FaGraduationCap className="w-4 h-4" />,
-  },
-  {
-    label: "Experience",
-    page: "/work",
-    icon: <FaBriefcase className="w-4 h-4" />,
-  },
-  {
-    label: "Projects",
-    page: "/projects",
-    icon: <FaCode className="w-4 h-4" />,
-  },
+const links = [
+  { label: "Projects", href: "/projects" },
+  { label: "Experience", href: "/work" },
+  { label: "About", href: "/#about" },
 ]
 
 export default function Navbar() {
-  const { systemTheme, theme, setTheme } = useTheme()
-  const currentTheme = theme === "system" ? systemTheme : theme
   const pathname = usePathname()
-  const router = useRouter()
-  const [navbar, setNavbar] = useState(false)
-  const [activeSection, setActiveSection] = useState("home")
-  const [scrolled, setScrolled] = useState(false)
+  const [open, setOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
+  const { resolvedTheme, setTheme } = useTheme()
+  const menuButton = useRef<HTMLButtonElement>(null)
 
+  useEffect(() => setMounted(true), [])
+  useEffect(() => setOpen(false), [pathname])
   useEffect(() => {
-    const handleScroll = () => {
-      const isScrolled = window.scrollY > 20
-      setScrolled(isScrolled)
-
-      if (pathname === "/") {
-        const homeSection = document.getElementById("home")
-        const aboutSection = document.getElementById("about")
-        
-        if (homeSection && aboutSection) {
-          const homeRect = homeSection.getBoundingClientRect()
-          const aboutRect = aboutSection.getBoundingClientRect()
-          
-          if (aboutRect.top <= window.innerHeight / 2) {
-            setActiveSection("about")
-          } else {
-            setActiveSection("home")
-          }
-        }
-      }
+    let frame = 0
+    let nextFrame = 0
+    const scrollToFragment = () => {
+      cancelAnimationFrame(frame)
+      cancelAnimationFrame(nextFrame)
+      frame = requestAnimationFrame(() => {
+        nextFrame = requestAnimationFrame(() => {
+          const id = window.location.hash.slice(1)
+          if (id) document.getElementById(id)?.scrollIntoView({ block: "start" })
+        })
+      })
     }
-
-    if (pathname === "/") {
-      if (window.location.hash === "#about") {
-        setTimeout(() => {
-          const aboutSection = document.getElementById("about")
-          if (aboutSection) {
-            aboutSection.scrollIntoView({ behavior: "smooth" })
-            setActiveSection("about")
-          }
-        }, 100)
-      }
-      
-      window.addEventListener("scroll", handleScroll)
-      handleScroll()
-    } else {
-      setActiveSection("")
-    }
-
+    scrollToFragment()
+    window.addEventListener("hashchange", scrollToFragment)
     return () => {
-      window.removeEventListener("scroll", handleScroll)
+      cancelAnimationFrame(frame)
+      cancelAnimationFrame(nextFrame)
+      window.removeEventListener("hashchange", scrollToFragment)
     }
   }, [pathname])
-
-  const handleNavigation = (item: NavItem) => {
-    if (item.isScroll && pathname === "/") {
-      const aboutSection = document.getElementById("about")
-      if (aboutSection) {
-        aboutSection.scrollIntoView({ behavior: "smooth" })
+  useEffect(() => {
+    if (!open) return
+    const dismiss = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpen(false)
+        menuButton.current?.focus()
       }
-    } else if (item.isScroll) {
-      router.push("/#about")
-      setTimeout(() => {
-        const aboutSection = document.getElementById("about")
-        if (aboutSection) {
-          aboutSection.scrollIntoView({ behavior: "smooth" })
-          setActiveSection("about")
-        }
-      }, 50)
-    } else {
-      router.push(item.page)
     }
-    setNavbar(false)
-  }
-
-  const isActive = (item: NavItem) => {
-    if (item.page === "/" && !item.isScroll) {
-      return pathname === "/" && activeSection === "home"
-    }
-    if (item.isScroll) {
-      return pathname === "/" && activeSection === "about"
-    }
-    return pathname === item.page
-  }
+    window.addEventListener("keydown", dismiss)
+    return () => window.removeEventListener("keydown", dismiss)
+  }, [open])
 
   return (
-    <header className={`w-full mx-auto px-4 sm:px-20 fixed top-0 z-50 transition-all duration-500 ${
-      scrolled 
-        ? "bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl shadow-xl border-b border-gray-200/60 dark:border-gray-700/60" 
-        : "bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg"
-    }`}>
-      <div className="justify-between md:items-center md:flex">
-        <div>
-          <div className="flex items-center justify-between py-4 md:py-6 md:block">
-            <Link href="/">
-              <div className="container flex items-center space-x-2">
-                <h2 className="text-2xl font-bold tracking-tight text-teal-600 dark:text-teal-400">
-                  Ansh Ankul
-                </h2>
-              </div>
-            </Link>
-            <div className="md:hidden">
-              <button
-                className="p-3 text-gray-700 dark:text-gray-300 rounded-xl outline-none focus:ring-2 focus:ring-teal-400 bg-white/80 dark:bg-gray-800/80 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
-                onClick={() => setNavbar(!navbar)}
-              >
-                {navbar ? <IoMdClose size={24} /> : <IoMdMenu size={24} />}
-              </button>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div
-            className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 transition-all duration-300 ${
-              navbar ? "block opacity-100" : "hidden md:block"
-            }`}
-          >
-            <div className="items-center justify-center space-y-8 md:flex md:space-x-2 md:space-y-0">
-              {NAV_ITEMS.map((item, idx) => {
-                const active = isActive(item)
-                return (
-                  <button
-                    key={idx}
-                    onClick={async (e) => {
-                      if (item.label === "Home") {
-                        e.preventDefault();
-                        if (pathname === "/") {
-                          window.scrollTo({ top: 0, behavior: "smooth" });
-                        } else {
-                          await router.push("/");
-                          setTimeout(() => {
-                            window.scrollTo({ top: 0, behavior: "smooth" });
-                          }, 100);
-                        }
-                      } else {
-                        handleNavigation(item);
-                      }
-                    }}
-                    className={`group relative flex items-center space-x-2 px-4 py-3 rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-teal-400 hover:scale-105 ${
-                      active 
-                        ? "bg-gradient-to-r from-teal-500 to-blue-500 text-white shadow-lg transform scale-105" 
-                        : "text-gray-700 dark:text-gray-300 hover:bg-gradient-to-r hover:from-teal-50 hover:to-blue-50 dark:hover:from-teal-900/20 dark:hover:to-blue-900/20"
-                    }`}
-                  >
-                                         <span className={`transition-all duration-300 ${
-                       active ? "text-white scale-110" : "text-teal-600 dark:text-teal-400 group-hover:text-teal-700 group-hover:scale-110"
-                     }`}>
-                       {item.icon}
-                     </span>
-                    <span className="font-medium">{item.label}</span>
-                    {active && (
-                      <div className="absolute inset-0 bg-gradient-to-r from-teal-500 to-blue-500 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
-                    )}
-                  </button>
-                )
-              })}
-                             <div className="flex items-center space-x-2">
-                 {currentTheme === "dark" ? (
-                   <button
-                     onClick={() => setTheme("light")}
-                     className="p-3 bg-gradient-to-r from-yellow-100 to-orange-100 dark:from-yellow-900/30 dark:to-orange-900/30 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 hover:from-yellow-200 hover:to-orange-200 dark:hover:from-yellow-800/40 dark:hover:to-orange-800/40"
-                   >
-                     <RiSunLine size={20} className="text-yellow-600 dark:text-yellow-400" />
-                   </button>
-                 ) : (
-                   <button
-                     onClick={() => setTheme("dark")}
-                     className="p-3 bg-gradient-to-r from-gray-100 to-slate-100 dark:from-gray-800 dark:to-slate-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 hover:from-gray-200 hover:to-slate-200 dark:hover:from-gray-700 dark:hover:to-slate-700"
-                   >
-                     <RiMoonFill size={20} className="text-gray-700 dark:text-gray-300" />
-                   </button>
-                 )}
-               </div>
-            </div>
-          </div>
+    <header className="site-header">
+      <div className="container header-inner">
+        <Link href="/" className="brand" aria-label="Ansh Ankul, home" onClick={() => setOpen(false)}>
+          <span className="brand-mark" aria-hidden="true">a<span>.</span></span>
+          <span>Ansh Ankul<span className="brand-dot">.</span></span>
+        </Link>
+        <nav className="desktop-nav" aria-label="Main navigation">
+          {links.map(link => <Link key={link.label} href={link.href} className={pathname === link.href ? "active" : ""} aria-current={pathname === link.href ? "page" : undefined} onClick={() => { if (pathname === "/" && link.href === "/#about") document.getElementById("about")?.scrollIntoView({ block: "start" }) }}>{link.label}</Link>)}
+        </nav>
+        <div className="header-actions">
+          <button className="icon-button theme-button" aria-label={mounted && resolvedTheme === "dark" ? "Switch to light theme" : "Switch to dark theme"} onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}>
+            {mounted && resolvedTheme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
+          <a className="resume-link" href={profile.resume} target="_blank" rel="noopener noreferrer">Résumé <ArrowUpRight size={16} /></a>
+          <button ref={menuButton} className="icon-button menu-button" aria-label={open ? "Close navigation" : "Open navigation"} aria-expanded={open} aria-controls="mobile-navigation" onClick={() => setOpen(!open)}>{open ? <X size={22} /> : <Menu size={22} />}</button>
         </div>
       </div>
+      <nav id="mobile-navigation" className={`mobile-nav ${open ? "is-open" : ""}`} aria-label="Mobile navigation" hidden={!open}>
+        {links.map(link => <Link key={link.label} href={link.href} onClick={() => { setOpen(false); if (pathname === "/" && link.href === "/#about") document.getElementById("about")?.scrollIntoView({ block: "start" }) }}>{link.label}<ArrowUpRight size={20} /></Link>)}
+        <Link href="/education" onClick={() => setOpen(false)}>Education<ArrowUpRight size={20} /></Link>
+        <a href={`mailto:${profile.email}`} onClick={() => setOpen(false)}>Let’s talk<ArrowUpRight size={20} /></a>
+      </nav>
     </header>
   )
 }

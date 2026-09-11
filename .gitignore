@@ -17,6 +17,7 @@ coverage/
 *.log
 # Ignore build artifacts
 build/
+*.tsbuildinfo
 # Ignore temp files
 *.tmp
 # Ignore local env files

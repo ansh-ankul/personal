@@ -1,0 +1,333 @@
+.details-section {
+  padding-bottom: 110px;
+}
+
+.details-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 40px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.details-breadcrumb a {
+  color: var(--ink);
+  text-underline-offset: 4px;
+}
+
+.details-breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.details-intro-bottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.details-intro-bottom > .text-link {
+  flex-shrink: 0;
+  margin-bottom: 5px;
+}
+
+.experience-heading {
+  margin-bottom: 48px;
+}
+
+.experience-list,
+.education-list {
+  border-top: 1px solid var(--line);
+}
+
+.experience-row {
+  display: grid;
+  grid-template-columns: 0.95fr 1.4fr;
+  gap: 65px;
+  padding: 44px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.experience-identity {
+  display: grid;
+  grid-template-columns: 26px 1fr;
+  align-items: start;
+  gap: 24px;
+}
+
+.detail-index {
+  padding-top: 2px;
+  color: var(--accent);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.experience-company {
+  margin: 0 0 12px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.experience-role {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(21px, 2vw, 27px);
+  font-weight: 500;
+  letter-spacing: -0.8px;
+  line-height: 1.3;
+}
+
+.experience-period {
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.experience-description {
+  margin: 0 0 18px;
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.experience-achievements {
+  display: grid;
+  gap: 11px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.experience-achievements li {
+  position: relative;
+  padding-left: 17px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.experience-achievements li::before {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+  content: "";
+}
+
+.experience-meta {
+  margin-top: 24px;
+}
+
+.detail-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.detail-tags li {
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.experience-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 25px;
+}
+
+.experience-links .text-link {
+  font-size: 13px;
+}
+
+.education-row {
+  display: grid;
+  grid-template-columns: 0.75fr 1.6fr;
+  gap: 65px;
+  padding: 55px 0 58px;
+  border-bottom: 1px solid var(--line);
+}
+
+.education-aside {
+  display: grid;
+  grid-template-columns: 26px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.education-level {
+  margin: 0 0 9px;
+  color: var(--ink);
+  font-size: 13px;
+}
+
+.education-period {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.education-emblem {
+  display: flex;
+  width: 100px;
+  min-height: 112px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 35px;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 56px;
+  line-height: 1.1;
+}
+
+.education-emblem span {
+  margin-top: 8px;
+  color: var(--muted);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 8px;
+  letter-spacing: 2px;
+}
+
+.education-institution {
+  max-width: 600px;
+  margin: 0 0 13px;
+  color: var(--ink);
+  font-size: clamp(26px, 2.7vw, 36px);
+  font-weight: 500;
+  letter-spacing: -1.2px;
+  line-height: 1.25;
+}
+
+.education-degree {
+  margin: 0 0 22px;
+  color: var(--accent);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.education-description {
+  max-width: 590px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.education-coursework {
+  margin-top: 30px;
+}
+
+.education-coursework h3 {
+  margin: 0 0 13px;
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.education-courses {
+  max-width: 590px;
+}
+
+.education-courses li {
+  padding: 7px 11px;
+  font-size: 12px;
+}
+
+.education-school-link {
+  margin-top: 27px;
+  font-size: 13px;
+}
+
+@media (max-width: 900px) {
+  .experience-row,
+  .education-row {
+    gap: 32px;
+  }
+
+  .experience-identity,
+  .education-aside {
+    gap: 13px;
+  }
+
+  .education-row {
+    grid-template-columns: 0.8fr 1.5fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .details-section {
+    padding-bottom: 72px;
+  }
+
+  .details-breadcrumb {
+    margin-bottom: 30px;
+  }
+
+  .details-intro-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .experience-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+
+  .experience-row,
+  .education-row {
+    grid-template-columns: 1fr;
+    gap: 26px;
+    padding: 32px 0;
+  }
+
+  .experience-company {
+    margin-bottom: 8px;
+  }
+
+  .experience-content {
+    padding-left: 39px;
+  }
+
+  .experience-description {
+    font-size: 15px;
+  }
+
+  .experience-achievements li {
+    font-size: 13px;
+  }
+
+  .education-emblem {
+    display: none;
+  }
+
+  .education-content {
+    padding-left: 39px;
+  }
+
+  .education-institution {
+    font-size: 28px;
+  }
+
+  .education-degree {
+    font-size: 15px;
+  }
+}
