@@ -57,7 +57,6 @@ export const profile = {
   name: "Ansh Ankul",
   firstName: "Ansh",
   role: "AI Engineer & Forward Deployed Engineer",
-  location: "Champaign, IL",
   email: "anshankul.official@gmail.com",
   github: "https://github.com/ansh-ankul",
   linkedin: "https://www.linkedin.com/in/ansh-ankul/",

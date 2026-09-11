@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowUpRight, BrainCircuit, Code2, Database, MapPin } from "lucide-react"
+import { ArrowUpRight, BrainCircuit, Code2, Database } from "lucide-react"
 import { skillGroups } from "@/lib/portfolio"
 
 const skillIcons = [BrainCircuit, Database, Code2]
@@ -15,7 +15,6 @@ export default function AboutSection() {
               <Image src="/headshot.jpeg" alt="Ansh Ankul in front of Foellinger Auditorium at the University of Illinois" width={640} height={720} sizes="(max-width: 760px) 90vw, 36vw" />
               <span className="photo-note">Always a work in progress.</span>
             </div>
-            <div className="photo-caption"><MapPin size={13}/><span>URBANA-CHAMPAIGN, IL</span><span>↗</span></div>
             <span className="about-sticker" aria-hidden="true">hello<br /><span>there.</span></span>
           </div>
           <div className="about-copy">

@@ -4,12 +4,18 @@ A responsive Next.js portfolio positioned for AI Engineer and Forward Deployed E
 
 ## Run locally
 
+Use Node.js 24 (also specified in `.nvmrc` and `package.json`). With nvm installed:
+
 ```sh
+nvm install
+nvm use
 npm ci
 npm run dev
 ```
 
 Open http://localhost:3000. To validate and serve a production build, run `npm run build` followed by `npm start`.
+
+In Vercel, set **Settings → Build and Deployment → Node.js Version** to **24.x** and create a new deployment. The `engines.node` setting in `package.json` also selects Node.js 24 for deployments containing this configuration.
 
 Deployment uses the Next.js runtime, as on Vercel. The existing GitHub Pages workflow invokes `next export`, which does not support this project's App Router routes in Next.js 13.1.6. That legacy workflow needs a framework update before it can publish a static export; the production build and Node/Vercel runtime work independently of it.
 

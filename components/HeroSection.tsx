@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { ArrowDown, ArrowDownRight, ArrowUpRight, MapPin } from "lucide-react"
+import { ArrowDown, ArrowDownRight, ArrowUpRight } from "lucide-react"
 import DataSculpture from "./DataSculpture"
 import { profile } from "@/lib/portfolio"
 
@@ -18,7 +18,7 @@ export default function HeroSection() {
             <a href="#projects" className="button button-dark">Explore my work <ArrowDownRight size={19} /></a>
             <a href={`mailto:${profile.email}`} className="text-link">Let’s talk <ArrowUpRight size={18} /></a>
           </div>
-          <div className="hero-location"><MapPin size={14} /><span>Based in {profile.location}</span><span className="location-divider" /><span>From domain requirements to deployment.</span></div>
+          <div className="hero-location">From domain requirements to deployment.</div>
         </div>
         <div className="hero-visual">
           <div className="data-artwork">
